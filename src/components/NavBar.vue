@@ -6,7 +6,7 @@
         <div>
             <h1>Quendle</h1>
             <nav>
-                <RouterLink to="/">To do list</RouterLink>
+                <RouterLink to="/">To Do List</RouterLink>
                 <RouterLink to="/calendar">Calendar</RouterLink>
             </nav>
         </div>
@@ -47,5 +47,6 @@
 
     .active {
         color: #000;
+        border-bottom: 1px solid red;
     }
 </style>
