@@ -20,4 +20,9 @@
       background-color: antiquewhite;
       width: 100%;
     }
+
+    main {
+      background-color: var(--lightgray);
+      min-height: 100vh;
+    }
 </style>

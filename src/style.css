@@ -12,9 +12,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --lightblue: #eff6ff;
-  --mediumblue: #bfdbfe;
-  --darkpastelblue: #60a5fa;
+  --lightaccent1: #eff6ff;
+  --lightaccent2: #bfdbfe;
+  --lightaccent3: #60a5fa;
+
   --lightgray: #f9fafb;
   --mediumgray: #e5e7eb;
   --darkgray: #6b7280;

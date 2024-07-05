@@ -125,18 +125,16 @@ function remove() {
   </template>
   
 <style scoped>
-  .card {
-    border: 1px solid blue;
-  }
-
   .container {
     border: 3px solid orange;
     width: 300px;
+    min-height: 400px;
     margin: 100px 0 50px 0;
+    padding: 10px;
   }
 
   .container2 {
-    height: 70%;
+    min-height: 350px;
     border: 2px solid red;
   }
 
@@ -149,6 +147,7 @@ function remove() {
 
   .drag {
     rotate: -3deg;
+    
   }
 
   .ghost {
