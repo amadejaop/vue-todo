@@ -36,8 +36,9 @@
 </script>
 
 <template>
-    <div>
+    <div class="todo-view">
       <VueDraggable
+      class="container"
         v-model="tasksTodoList"
         animation="150"
         ghostClass="ghost"
@@ -49,14 +50,14 @@
         <div
           v-for="item in tasksTodoList"
           :key="item.id"
-          class="cursor-move h-30 bg-gray-500/5 rounded p-3"
+          class="card"
         >
           {{ item.name }}
         </div>
       </VueDraggable>
 
       <VueDraggable
-        class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded overflow-auto"
+class="container"
         v-model="tasksDoingList"
         animation="150"
         group="people"
@@ -68,13 +69,13 @@
         <div
           v-for="item in tasksDoingList"
           :key="item.id"
-          class="cursor-move h-30 bg-gray-500/5 rounded p-3"
+          class="card"
         >
           {{ item.name }}
     </div>
       </VueDraggable>
 
-      <VueDraggable
+      <VueDraggable class="container"
         v-model="tasksDoneList"
         animation="150"
         group="people"
@@ -83,7 +84,6 @@
         @add="onAdd"
         @remove="remove"
       >
-      <div class="container">
         <div
           v-for="item in tasksDoneList"
           :key="item.id"
@@ -91,18 +91,25 @@
         >
           {{ item.name }}
         </div>
-    </div>
       </VueDraggable>
     </div>
   </template>
   
 <style scoped>
-
   .card {
     border: 1px solid blue;
   }
 
   .container {
     border: 3px solid orange;
+    width: 300px;
+    margin: 100px 0 50px 0;
+  }
+
+  .todo-view {
+    display: flex;
+    overflow: hidden;
+    gap: 10px;
+    justify-content: center;
   }
 </style>

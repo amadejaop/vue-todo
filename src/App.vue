@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar.vue";
 
 <template>
   <NavBar />
-<main>
+  <main>
     <RouterView />
   </main>
   <footer>footer</footer>
@@ -15,7 +15,7 @@ import NavBar from "./components/NavBar.vue";
 
 <style scoped>
     footer {
-      position: absolute;
+      position: fixed;
       bottom: 0;
       background-color: antiquewhite;
       width: 100%;

@@ -4,7 +4,7 @@
 <template>
     <header>
         <div>
-            <span>Quendle</span>
+            <h1>Quendle</h1>
             <nav>
                 <RouterLink to="/">To do list</RouterLink>
                 <RouterLink to="/calendar">Calendar</RouterLink>
@@ -22,6 +22,9 @@
         align-items: center;
         justify-content: space-around;
         height: 60px;
+        position: fixed;
+        top: 0;
+        width: 100%;
     }
     
     header > div {
@@ -29,7 +32,7 @@
         gap: 4vw;
     }
 
-    header > div > span {
+    header > div > h1 {
         text-transform: uppercase;
         font-weight: 600;
         font-size: large;
@@ -39,7 +42,7 @@
     nav {
         display: flex;
         gap: 2vw;
-        margin-top: 2px;
+        align-items: center;
     }
 
     .active {
