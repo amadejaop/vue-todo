@@ -6,7 +6,6 @@
 <template>
   <NavBar />
   <main>
-    
     <RouterView />
   </main>
   <footer>footer

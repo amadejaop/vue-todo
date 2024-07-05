@@ -66,7 +66,7 @@ function changeStatusDone(item) {
     <div class="todo-view">
         <div class="container">
             <div class="listheader">
-            <h2>to do</h2>
+            <h2>To do</h2>
             <button type="button">+ Add Task</button>
         </div>
       <VueDraggable
@@ -90,7 +90,7 @@ function changeStatusDone(item) {
       </VueDraggable>
     </div>
       <div class="container">
-        <h2>doing</h2>
+        <h2>Doing</h2>
       <VueDraggable
       class="container2"        
       v-model="list2"
@@ -114,7 +114,7 @@ function changeStatusDone(item) {
       </VueDraggable>
     </div>
     <div class="container">
-        <h2>done</h2>
+        <h2>Done</h2>
       <VueDraggable
         class="container2"        
         v-model="list3"
@@ -186,6 +186,14 @@ function changeStatusDone(item) {
   }
 
   button[type=button] {
+    background-color: var(--lightaccent3);
+    color: white;
+    transition: .2s;
+  }
 
+  button[type=button]:hover {
+    border: 1px solid var(--lightaccent3);
+    color: var(--lightaccent3);
+    background-color: white;
   }
 </style>
