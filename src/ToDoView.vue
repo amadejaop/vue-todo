@@ -46,17 +46,29 @@ function onUpdate() {
   console.log('update')
 }
 function onAdd() {
-  console.log('add')
+console.log('add')
 }
 function remove() {
   console.log('remove')
+}
+function changeStatusTodo(item) {
+    item.taskStatus = "todo";
+}
+function changeStatusDoing(item) {
+    item.taskStatus = "doing";
+}
+function changeStatusDone(item) {
+    item.taskStatus = "done";
 }
 </script>
 
 <template>
     <div class="todo-view">
         <div class="container">
-            <h4>to do</h4>
+            <div class="listheader">
+            <h2>to do</h2>
+            <button type="button">+ Add Task</button>
+        </div>
       <VueDraggable
       class="container2"
       v-model="list1"
@@ -71,16 +83,17 @@ function remove() {
         <div
           v-for="item in list1"
           :key="item.id"
-          class="cursor-move h-30 bg-gray-500/5 rounded p-3"
         >
+        {{ changeStatusTodo(item) }}
         <Task v-bind="item" />
         </div>
       </VueDraggable>
     </div>
       <div class="container">
-        <h4>doing</h4>
+        <h2>doing</h2>
       <VueDraggable
-      class="container2"        v-model="list2"
+      class="container2"        
+      v-model="list2"
         animation="150"
         dragClass="drag"
         group="people"
@@ -93,16 +106,18 @@ function remove() {
         <div
           v-for="item in list2"
           :key="item.id"
-          class="cursor-move h-30 bg-gray-500/5 rounded p-3"
         >
+
+        {{ changeStatusDoing(item) }}
         <Task v-bind="item" />
         </div>
       </VueDraggable>
     </div>
     <div class="container">
-        <h4>done</h4>
+        <h2>done</h2>
       <VueDraggable
-      class="container2"        v-model="list3"
+        class="container2"        
+        v-model="list3"
         animation="150"
         dragClass="drag"
         group="people"
@@ -114,9 +129,9 @@ function remove() {
         <div
           v-for="item in list3"
           :key="item.id"
-          
         >
-        <Task v-bind="item" />
+          {{ changeStatusDone(item) }}
+          <Task v-bind="item" />
         </div>
       </VueDraggable>
     </div>
@@ -126,7 +141,8 @@ function remove() {
   
 <style scoped>
   .container {
-    border: 3px solid orange;
+    border-radius: 20px;
+    background-color: white;
     width: 300px;
     min-height: 400px;
     margin: 100px 0 50px 0;
@@ -135,7 +151,6 @@ function remove() {
 
   .container2 {
     min-height: 350px;
-    border: 2px solid red;
   }
 
   .todo-view {
@@ -153,5 +168,24 @@ function remove() {
   .ghost {
     opacity: 0.5;
     filter: grayscale(100%);
+  }
+
+  .listheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .listheader > h2,
+  .container > h2 {
+    text-align: left;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 1.3rem;
+    font-weight: 300;
+  }
+
+  button[type=button] {
+
   }
 </style>

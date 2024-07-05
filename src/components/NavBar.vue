@@ -6,8 +6,8 @@
         <div>
             <h1>Quendle</h1>
             <nav>
-                <RouterLink to="/">To Do List</RouterLink>
-                <RouterLink to="/calendar">Calendar</RouterLink>
+                <RouterLink class="routerlink" to="/">To Do List</RouterLink>
+                <RouterLink class="routerlink" to="/calendar">Calendar</RouterLink>
             </nav>
         </div>
         <button>Dark mode</button>
@@ -37,6 +37,8 @@
         font-weight: 600;
         font-size: large;
         color: var(--darkgray);
+        height: 60px;
+        line-height: 60px;
     }
 
     nav {
@@ -45,8 +47,16 @@
         align-items: center;
     }
 
-    .active {
+    
+    .routerlink {
+        display: inline-block;
+        height: 60px;
+        line-height: 60px;
+        box-sizing: border-box;
+    }
+    .active,
+    .routerlink:hover {
         color: #000;
-        border-bottom: 1px solid red;
+        border-bottom: 3px solid var(--darkgray);
     }
 </style>
