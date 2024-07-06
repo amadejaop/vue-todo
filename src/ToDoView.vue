@@ -2,6 +2,11 @@
 import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
 import Task from "./components/Task.vue"
+import { ModalsContainer, useModal } from 'vue-final-modal';
+import AddTaskModal from './components/AddTaskModal.vue'
+
+let idNumber = 0;
+
 const list1 = ref([
   {
     id: '1',
@@ -60,6 +65,21 @@ function changeStatusDoing(item) {
 function changeStatusDone(item) {
     item.taskStatus = "done";
 }
+
+const { open, close } = useModal({
+    component: AddTaskModal,
+    attrs: {
+      onConfirm(params) {
+        // adding info obtained to the array
+        console.log(params[0])
+        console.log(params[1])
+        console.log(params[2])
+        idNumber++;
+        console.log(idNumber)
+        close()
+      },
+    },
+  })
 </script>
 
 <template>
@@ -67,7 +87,7 @@ function changeStatusDone(item) {
         <div class="container">
             <div class="listheader">
             <h2>To do</h2>
-            <button type="button">+ Add Task</button>
+            <button @click="open">+ Add Task</button>
         </div>
       <VueDraggable
       class="container2"
@@ -136,17 +156,18 @@ function changeStatusDone(item) {
       </VueDraggable>
     </div>
     </div>
-    
+    <ModalsContainer />
   </template>
   
 <style scoped>
   .container {
     border-radius: 20px;
     background-color: white;
-    width: 300px;
+    width: 350px;
     min-height: 400px;
     margin: 100px 0 50px 0;
-    padding: 10px;
+    padding: 15px;
+    box-sizing: border-box;
   }
 
   .container2 {
