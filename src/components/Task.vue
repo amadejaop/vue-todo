@@ -116,7 +116,7 @@
   }
 
   .lowPriority {
-    border-left: 4px solid #bef264;
+    border-left: 4px solid #4ade80;
   }
 
   button[type=button] {
