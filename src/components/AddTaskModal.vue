@@ -1,4 +1,5 @@
-<script setup lang="ts">
+<script setup>
+import { ref } from 'vue';
 import { VueFinalModal } from 'vue-final-modal'
 import 'vue-final-modal/style.css'
 
@@ -6,6 +7,22 @@ const emit = defineEmits(['confirm'])
 const first = 'hello'
 const second = 'there'
 const last = 'world'
+
+//taskName
+//taskDate create with date OR allow user to choose a different date
+// create a date and use it inside ref, then if the user wants to change the date, he can
+//task Tag, which is optional checkbox
+//task priority which is mandatory radio
+const addTaskName = ref('');
+const today = new Date();
+const monthsOfTheYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const todaysDay = today.getDate();
+const todaysSuffix = (todaysDay === 1 ? 'st' : (todaysDay === 2 ? 'nd' : (todaysDay === 3 ? 'rd' : 'th')));
+const todaysMonth = monthsOfTheYear[today.getMonth()];
+const todaysYear = today.getFullYear();
+console.log(todaysMonth + ' ' + todaysDay + todaysSuffix + ', ' + todaysYear)
+const addTaskDate = ref(`{todaysMonth}`);
+console.log('task name: ' + addTaskName)
 </script>
 
 <template>

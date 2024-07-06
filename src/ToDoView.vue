@@ -71,6 +71,8 @@ const { open, close } = useModal({
     attrs: {
       onConfirm(params) {
         // adding info obtained to the array
+        //id is idNumber++
+        //taskStatus is automatically todo
         console.log(params[0])
         console.log(params[1])
         console.log(params[2])
