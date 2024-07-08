@@ -13,19 +13,17 @@ const last = 'world'
 // create a date and use it inside ref, then if the user wants to change the date, he can
 //task Tag, which is optional checkbox
 //task priority which is mandatory radio
-const addTaskName = ref('');
-const addTaskDate = ref('');
+const addTaskName = ref('Work on project A');
+const addTaskDate = ref(getTodaysDate());
 const addTaskTag = ref('work');
 const addTaskPriority = ref('high');
 
 function getTodaysDate() {
   const today = new Date();
-  const monthsOfTheYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const todaysDay = today.getDate();
-  const todaysSuffix = (todaysDay === 1 ? 'st' : (todaysDay === 2 ? 'nd' : (todaysDay === 3 ? 'rd' : 'th')));
-  const todaysMonth = monthsOfTheYear[today.getMonth()];
   const todaysYear = today.getFullYear();
-  return (todaysMonth + ' ' + todaysDay + todaysSuffix + ', ' + todaysYear);
+  const todaysMonth = (today.getMonth() + 1).toString().padStart(2, '0');
+  const todaysDay = today.getDate().toString().padStart(2, '0');
+  return (todaysYear + '-' + todaysMonth + '-' + todaysDay);
 }
 </script>
 
