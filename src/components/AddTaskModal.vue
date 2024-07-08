@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { VueFinalModal } from 'vue-final-modal'
 import 'vue-final-modal/style.css'
 
-const emit = defineEmits(['confirm'])
+const emit = defineEmits(['confirm', 'close'])
 const first = 'hello'
 const second = 'there'
 const last = 'world'
@@ -14,15 +14,19 @@ const last = 'world'
 //task Tag, which is optional checkbox
 //task priority which is mandatory radio
 const addTaskName = ref('');
-const today = new Date();
-const monthsOfTheYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const todaysDay = today.getDate();
-const todaysSuffix = (todaysDay === 1 ? 'st' : (todaysDay === 2 ? 'nd' : (todaysDay === 3 ? 'rd' : 'th')));
-const todaysMonth = monthsOfTheYear[today.getMonth()];
-const todaysYear = today.getFullYear();
-console.log(todaysMonth + ' ' + todaysDay + todaysSuffix + ', ' + todaysYear)
-const addTaskDate = ref(`{todaysMonth}`);
-console.log('task name: ' + addTaskName)
+const addTaskDate = ref('');
+const addTaskTag = ref('work');
+const addTaskPriority = ref('high');
+
+function getTodaysDate() {
+  const today = new Date();
+  const monthsOfTheYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const todaysDay = today.getDate();
+  const todaysSuffix = (todaysDay === 1 ? 'st' : (todaysDay === 2 ? 'nd' : (todaysDay === 3 ? 'rd' : 'th')));
+  const todaysMonth = monthsOfTheYear[today.getMonth()];
+  const todaysYear = today.getFullYear();
+  return (todaysMonth + ' ' + todaysDay + todaysSuffix + ', ' + todaysYear);
+}
 </script>
 
 <template>
@@ -33,9 +37,27 @@ console.log('task name: ' + addTaskName)
     content-transition="vfm-fade"
   >
     <h2>Add Task</h2>
-      <button @click="emit('confirm', [first, second, last])">
-        Add
-      </button>
+      <form @submit.prevent>
+        <label for="addTaskName">* Task: <input v-model="addTaskName" placeholder="Ex.: Do the dishes" minlength="3" required></label>
+        <label for="addTaskDate">* Date: <input v-model="addTaskDate" type="date" required></label>
+        <fieldset>
+          <legend>* Tag: </legend>
+          <input type="radio" id="work" value="work" v-model="addTaskTag" required><label for="work" checked>work</label>
+          <input type="radio" id="personal" value="personal" v-model="addTaskTag" required><label for="personal">personal</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>* Priority:</legend>
+          <input type="radio" id="high" value="high" v-model="addTaskPriority" required><label for="high" checked>high</label>
+          <input type="radio" id="medium" value="medium" v-model="addTaskPriority"><label for="medium">medium</label>
+          <input type="radio" id="low" value="low" v-model="addTaskPriority"><label for="low">low</label>
+        </fieldset>
+      
+        <button type="button" @click="emit('close')">Cancel</button>
+        <button type="submit" @click="emit('confirm', [addTaskName, addTaskDate, addTaskTag, addTaskPriority])">
+          Add
+        </button>
+      </form>
   </VueFinalModal>
 </template>
 

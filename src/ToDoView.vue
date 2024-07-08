@@ -76,10 +76,14 @@ const { open, close } = useModal({
         console.log(params[0])
         console.log(params[1])
         console.log(params[2])
+        console.log(params[3])
         idNumber++;
         console.log(idNumber)
         close()
       },
+      onClose() {
+        close();
+      }
     },
   })
 </script>
