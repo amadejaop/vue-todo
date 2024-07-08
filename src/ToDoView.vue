@@ -5,10 +5,10 @@ import Task from "./components/Task.vue"
 import { ModalsContainer, useModal } from 'vue-final-modal';
 import AddTaskModal from './components/AddTaskModal.vue'
 
-let idNumber = 4;
+let idNumber = 0;
 
 const list1 = ref([
-  {
+{
     id: '1',
     taskName: "brush teeth",
     taskDate: "Dec 15th, 2024",
@@ -39,14 +39,11 @@ const list1 = ref([
     taskTag: "personal",
     taskPriority: "medium",
     taskStatus: "todo"
-  },
-])
-const list2 = ref(
-  []
-)
-const list3 = ref(
-  []
-)
+  }
+]);
+const list2 = ref([])
+const list3 = ref([])
+
 function onUpdate() {
   console.log('update')
 }
@@ -86,7 +83,8 @@ const { open, close } = useModal({
           taskStatus: "todo"
         }
         list1.value.push(newTask);
-        
+
+
         close()
       },
       onClose() {
