@@ -5,7 +5,7 @@ import Task from "./components/Task.vue"
 import { ModalsContainer, useModal } from 'vue-final-modal';
 import AddTaskModal from './components/AddTaskModal.vue'
 
-let idNumber = 0;
+let idNumber = 4;
 
 const list1 = ref([
   {
@@ -73,12 +73,20 @@ const { open, close } = useModal({
         // adding info obtained to the array
         //id is idNumber++
         //taskStatus is automatically todo
-        console.log(params[0])
-        console.log(params[1])
-        console.log(params[2])
-        console.log(params[3])
         idNumber++;
-        console.log(idNumber)
+        const newId = idNumber.toString();
+        const newDate = formatDate(params[1])
+        
+        const newTask = {
+          id: newId,
+          taskName: params[0],
+          taskDate: newDate,
+          taskTag: params[2],
+          taskPriority: params[3],
+          taskStatus: "todo"
+        }
+        list1.value.push(newTask);
+        
         close()
       },
       onClose() {
@@ -86,6 +94,16 @@ const { open, close } = useModal({
       }
     },
   })
+
+  function formatDate(date) {
+    const formattedDate = date.split('-');
+    const day = parseInt(formattedDate[2], 10);
+    const daySuffix = (day === 1 ? 'st' : (day === 2 ? 'nd' : (day === 3 ? 'rd' : 'th')));
+    const monthsOfTheYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const month = parseInt(formattedDate[1], 10) - 1;
+    const year = formattedDate[0];
+    return (monthsOfTheYear[month] + ' ' + day + daySuffix + ', ' + year);
+  }
 </script>
 
 <template>
@@ -178,6 +196,7 @@ const { open, close } = useModal({
 
   .container2 {
     min-height: 350px;
+    height: 90%;
   }
 
   .todo-view {
