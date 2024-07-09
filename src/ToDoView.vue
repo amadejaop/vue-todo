@@ -4,6 +4,7 @@ import { VueDraggable } from 'vue-draggable-plus'
 import Task from "./components/Task.vue"
 import { ModalsContainer, useModal } from 'vue-final-modal';
 import AddTaskModal from './components/AddTaskModal.vue'
+import BlueButton from './components/BlueButton.vue';
 
 let idNumber = 0;
 
@@ -92,7 +93,7 @@ const { open, close } = useModal({
         <div class="container">
             <div class="listheader">
             <h2>To do</h2>
-            <button @click="open">+ Add Task</button>
+            <BlueButton @click="open">+ Add Task</BlueButton>
         </div>
       <VueDraggable
         class="container2"
