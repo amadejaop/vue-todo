@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
 import Task from "./components/Task.vue"
 import { ModalsContainer, useModal } from 'vue-final-modal';
@@ -7,42 +7,21 @@ import AddTaskModal from './components/AddTaskModal.vue'
 
 let idNumber = 0;
 
-const list1 = ref([
-{
-    id: '1',
-    taskName: "brush teeth",
-    taskDate: "Dec 15th, 2024",
-    taskTag: "personal",
-    taskPriority: "high",
-    taskStatus: "todo"
-  },
-  {
-    id: '2',
-    taskName: "wash car",
-    taskDate: "Dec 15th, 2024",
-    taskTag: "personal",
-    taskPriority: "low",
-    taskStatus: "todo"
-  },
-  {
-    id: '3',
-    taskName: "work on a project",
-    taskDate: "Dec 15th, 2024",
-    taskTag: "work",
-    taskPriority: "high",
-    taskStatus: "todo"
-  },
-  {
-    id: '4',
-    taskName: "do the laundry",
-    taskDate: "Dec 15th, 2024",
-    taskTag: "personal",
-    taskPriority: "medium",
-    taskStatus: "todo"
-  }
-]);
-const list2 = ref([])
-const list3 = ref([])
+const todoList = ref([])
+const doingList = ref([])
+const doneList = ref([])
+
+watch(todoList, (newTodo) => {
+  localStorage.setItem('todoList', JSON.stringify(newTodo))
+}, { deep: true })
+
+watch(doingList, (newDoing) => {
+  localStorage.setItem('doingList', JSON.stringify(newDoing))
+}, { deep: true })
+
+watch(doneList, (newDone) => {
+  localStorage.setItem('doneList', JSON.stringify(newDone))
+}, { deep: true })
 
 function onUpdate() {
   console.log('update')
@@ -82,9 +61,7 @@ const { open, close } = useModal({
           taskPriority: params[3],
           taskStatus: "todo"
         }
-        list1.value.push(newTask);
-
-
+        todoList.value.push(newTask);
         close()
       },
       onClose() {
@@ -102,6 +79,12 @@ const { open, close } = useModal({
     const year = formattedDate[0];
     return (monthsOfTheYear[month] + ' ' + day + daySuffix + ', ' + year);
   }
+
+  onMounted(() => {
+    todoList.value = JSON.parse(localStorage.getItem('todoList')) || []
+    doingList.value = JSON.parse(localStorage.getItem('doingList')) || []
+    doneList.value = JSON.parse(localStorage.getItem('doneList')) || []
+  })
 </script>
 
 <template>
@@ -112,8 +95,8 @@ const { open, close } = useModal({
             <button @click="open">+ Add Task</button>
         </div>
       <VueDraggable
-      class="container2"
-      v-model="list1"
+        class="container2"
+        v-model="todoList"
         animation="150"
         dragClass="drag"
         ghostClass="ghost"
@@ -123,7 +106,7 @@ const { open, close } = useModal({
         @remove="remove"
       >
         <div
-          v-for="item in list1"
+          v-for="item in todoList"
           :key="item.id"
         >
         {{ changeStatusTodo(item) }}
@@ -134,8 +117,8 @@ const { open, close } = useModal({
       <div class="container">
         <h2>Doing</h2>
       <VueDraggable
-      class="container2"        
-      v-model="list2"
+        class="container2"        
+        v-model="doingList"
         animation="150"
         dragClass="drag"
         group="people"
@@ -146,7 +129,7 @@ const { open, close } = useModal({
       >
       
         <div
-          v-for="item in list2"
+          v-for="item in doingList"
           :key="item.id"
         >
 
@@ -159,7 +142,7 @@ const { open, close } = useModal({
         <h2>Done</h2>
       <VueDraggable
         class="container2"        
-        v-model="list3"
+        v-model="doneList"
         animation="150"
         dragClass="drag"
         group="people"
@@ -169,7 +152,7 @@ const { open, close } = useModal({
         @remove="remove"
       >
         <div
-          v-for="item in list3"
+          v-for="item in doneList"
           :key="item.id"
         >
           {{ changeStatusDone(item) }}
