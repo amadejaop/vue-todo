@@ -62,7 +62,7 @@
   }
 
   .card > div:nth-child(2) {
-    flex: auto;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -126,7 +126,18 @@
     height: 30px;
     padding: 1px;
     position: relative;
+    transition:0.5s;
   }
+
+  button[type=button]:hover {
+    background-color: var(--lightaccent3);
+  }
+
+  button[type=button]:hover > svg {
+    filter: brightness(0) invert(1);
+  }
+
+
   button[type=button] > svg {
     position: absolute;
     top: 2px;

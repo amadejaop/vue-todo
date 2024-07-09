@@ -92,9 +92,9 @@ const { open, close } = useModal({
     <div class="todo-view">
         <div class="container">
             <div class="listheader">
-            <h2>To do</h2>
-            <BlueButton @click="open">+ Add Task</BlueButton>
-        </div>
+              <h2>To do</h2>
+              <BlueButton @click="open">+ Add Task</BlueButton>
+            </div>
       <VueDraggable
         class="container2"
         v-model="todoList"
@@ -116,7 +116,7 @@ const { open, close } = useModal({
       </VueDraggable>
     </div>
       <div class="container">
-        <h2>Doing</h2>
+        <h2 class="listheader">Doing</h2>
       <VueDraggable
         class="container2"        
         v-model="doingList"
@@ -140,7 +140,7 @@ const { open, close } = useModal({
       </VueDraggable>
     </div>
     <div class="container">
-        <h2>Done</h2>
+        <h2 class="listheader">Done</h2>
       <VueDraggable
         class="container2"        
         v-model="doneList"
@@ -183,14 +183,12 @@ const { open, close } = useModal({
 
   .todo-view {
     display: flex;
-    overflow: hidden;
-    gap: 10px;
+    gap: 1rem;
     justify-content: center;
   }
 
   .drag {
     rotate: -3deg;
-    
   }
 
   .ghost {
@@ -202,13 +200,13 @@ const { open, close } = useModal({
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 0.7rem;
   }
 
   .listheader > h2,
   .container > h2 {
     text-align: left;
     margin: 0;
-    padding: 10px 0;
     font-size: 1.3rem;
     font-weight: 300;
   }
