@@ -13,15 +13,15 @@
 </template>
 
 <style scoped>
-    footer {
-      position: fixed;
-      bottom: 0;
-      background-color: antiquewhite;
-      width: 100%;
-    }
+  footer {
+    background-color: antiquewhite;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
 
-    main {
-      background-color: var(--lightgray);
-      min-height: 100vh;
-    }
+  main {
+    background-color: var(--lightgray);
+    min-height: 100vh;
+  }
 </style>

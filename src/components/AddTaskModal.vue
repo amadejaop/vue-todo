@@ -1,23 +1,23 @@
 <script setup>
-import { ref } from 'vue';
-import { VueFinalModal } from 'vue-final-modal'
-import 'vue-final-modal/style.css'
-import BlueButton from './BlueButton.vue';
-import RedButton from './RedButton.vue';
+  import { ref } from 'vue';
+  import { VueFinalModal } from 'vue-final-modal'
+  import 'vue-final-modal/style.css'
+  import BlueButton from './BlueButton.vue';
+  import RedButton from './RedButton.vue';
 
-const emit = defineEmits(['confirm', 'close'])
-const addTaskName = ref('Work on project A');
-const addTaskDate = ref(getTodaysDate());
-const addTaskTag = ref('work');
-const addTaskPriority = ref('high');
+  const emit = defineEmits(['confirm', 'close'])
+  const addTaskName = ref('Work on project A');
+  const addTaskDate = ref(getTodaysDate());
+  const addTaskTag = ref('work');
+  const addTaskPriority = ref('high');
 
-function getTodaysDate() {
-  const today = new Date();
-  const todaysYear = today.getFullYear();
-  const todaysMonth = (today.getMonth() + 1).toString().padStart(2, '0');
-  const todaysDay = today.getDate().toString().padStart(2, '0');
-  return (todaysYear + '-' + todaysMonth + '-' + todaysDay);
-}
+  function getTodaysDate() {
+    const today = new Date();
+    const todaysYear = today.getFullYear();
+    const todaysMonth = (today.getMonth() + 1).toString().padStart(2, '0');
+    const todaysDay = today.getDate().toString().padStart(2, '0');
+    return (todaysYear + '-' + todaysMonth + '-' + todaysDay);
+  }
 </script>
 
 <template>
@@ -54,58 +54,58 @@ function getTodaysDate() {
   </VueFinalModal>
 </template>
 
-<style>
-.confirm-modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.confirm-modal-content {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 0.5rem;
-  gap: 1rem;
-  width: 300px;
-}
+<style scoped>
+  .btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
+  }
 
-.confirm-modal-content > h3 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
+  .confirm-modal {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .confirm-modal-content {
+    background: #fff;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    width: 300px;
+  }
 
-.confirm-modal-content > form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+  .confirm-modal-content > h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
 
-.confirm-modal-content > form > label > input {
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 0.5rem;
-  border: 1px solid var(--mediumgray2);
-  padding: 5px 10px;
-  font-size: 1rem;
-  font-family: Poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
-}
+  .confirm-modal-content > form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-.confirm-modal-content > form > fieldset {
-  border: 1px solid var(--mediumgray2);
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: baseline;
-}
+  .confirm-modal-content > form > label > input {
+    border-radius: 0.5rem;
+    border: 1px solid var(--mediumgray2);
+    box-sizing: border-box;
+    font-family: Poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    padding: 5px 10px;
+    width: 100%;
+  }
 
-.confirm-modal-content > form > fieldset > label {
-  margin: 0 1rem 0 0.2rem;
-}
+  .confirm-modal-content > form > fieldset {
+    align-items: baseline;
+    border-radius: 0.5rem;
+    border: 1px solid var(--mediumgray2);
+    display: flex;
+  }
 
-.btns {
-  display: flex;
-  gap: 1rem;
-  justify-content: end;
-}
+  .confirm-modal-content > form > fieldset > label {
+    margin: 0 1rem 0 0.2rem;
+  }
 </style>

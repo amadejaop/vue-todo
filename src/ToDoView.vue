@@ -24,6 +24,12 @@ watch(doneList, (newDone) => {
   localStorage.setItem('doneList', JSON.stringify(newDone))
 }, { deep: true })
 
+onMounted(() => {
+  todoList.value = JSON.parse(localStorage.getItem('todoList')) || []
+  doingList.value = JSON.parse(localStorage.getItem('doingList')) || []
+  doneList.value = JSON.parse(localStorage.getItem('doneList')) || []
+})
+
 function onUpdate() {
   console.log('update')
 }
@@ -33,6 +39,7 @@ console.log('add')
 function remove() {
   console.log('remove')
 }
+
 function changeStatusTodo(item) {
     item.taskStatus = "todo";
 }
@@ -80,21 +87,15 @@ const { open, close } = useModal({
     const year = formattedDate[0];
     return (monthsOfTheYear[month] + ' ' + day + daySuffix + ', ' + year);
   }
-
-  onMounted(() => {
-    todoList.value = JSON.parse(localStorage.getItem('todoList')) || []
-    doingList.value = JSON.parse(localStorage.getItem('doingList')) || []
-    doneList.value = JSON.parse(localStorage.getItem('doneList')) || []
-  })
 </script>
 
 <template>
-    <div class="todo-view">
-        <div class="container">
-            <div class="listheader">
-              <h2>To do</h2>
-              <BlueButton @click="open">+ Add Task</BlueButton>
-            </div>
+  <div class="todo-view">
+    <div class="container">
+      <div class="listheader">
+        <h2>To do</h2>
+        <BlueButton @click="open">+ Add Task</BlueButton>
+      </div>
       <VueDraggable
         class="container2"
         v-model="todoList"
@@ -110,13 +111,13 @@ const { open, close } = useModal({
           v-for="item in todoList"
           :key="item.id"
         >
-        {{ changeStatusTodo(item) }}
-        <Task v-bind="item" />
+          {{ changeStatusTodo(item) }}
+          <Task v-bind="item" />
         </div>
       </VueDraggable>
     </div>
-      <div class="container">
-        <h2 class="listheader">Doing</h2>
+    <div class="container">
+      <h2 class="listheader">Doing</h2>
       <VueDraggable
         class="container2"        
         v-model="doingList"
@@ -128,19 +129,18 @@ const { open, close } = useModal({
         @add="onAdd"
         @remove="remove"
       >
-      
         <div
           v-for="item in doingList"
           :key="item.id"
         >
 
-        {{ changeStatusDoing(item) }}
-        <Task v-bind="item" />
+          {{ changeStatusDoing(item) }}
+          <Task v-bind="item" />
         </div>
       </VueDraggable>
     </div>
     <div class="container">
-        <h2 class="listheader">Done</h2>
+      <h2 class="listheader">Done</h2>
       <VueDraggable
         class="container2"        
         v-model="doneList"
@@ -162,55 +162,10 @@ const { open, close } = useModal({
       </VueDraggable>
     </div>
     </div>
-    <ModalsContainer />
-  </template>
+  <ModalsContainer />
+</template>
   
 <style scoped>
-  .container {
-    border-radius: 20px;
-    background-color: white;
-    width: 350px;
-    min-height: 400px;
-    margin: 100px 0 50px 0;
-    padding: 15px;
-    box-sizing: border-box;
-  }
-
-  .container2 {
-    min-height: 350px;
-    height: 90%;
-  }
-
-  .todo-view {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  .drag {
-    rotate: -3deg;
-  }
-
-  .ghost {
-    opacity: 0.5;
-    filter: grayscale(100%);
-  }
-
-  .listheader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 0.7rem;
-  }
-
-  .listheader > h2,
-  .container > h2 {
-    text-align: left;
-    margin: 0;
-    font-size: 1.3rem;
-    font-weight: 300;
-  }
-
   button[type=button] {
     background-color: var(--lightaccent3);
     color: white;
@@ -218,8 +173,53 @@ const { open, close } = useModal({
   }
 
   button[type=button]:hover {
+    background-color: white;
     border: 1px solid var(--lightaccent3);
     color: var(--lightaccent3);
+  }
+
+  .container {
     background-color: white;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin: 100px 0 50px 0;
+    min-height: 400px;
+    padding: 15px;
+    width: 350px;
+  }
+
+  .container2 {
+    height: 90%;
+    min-height: 350px;
+  }
+
+  .drag {
+    rotate: -3deg;
+  }
+
+  .ghost {
+    filter: grayscale(100%);
+    opacity: 0.5;
+  }
+
+  .listheader {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.7rem;
+  }
+
+  .listheader > h2,
+  .container > h2 {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin: 0;
+    text-align: left;
+  }
+
+  .todo-view {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
   }
 </style>

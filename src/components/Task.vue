@@ -38,95 +38,14 @@
 </template>
 
 <style scoped>
-  .card {
-    border: 1px solid var(--mediumgray);
-    box-shadow: 3px 3px var(--mediumgray2);
-    margin: 5px 0 15px 0;
-    padding: 5px 10px;
-    border-radius: 15px;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    align-items: center;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-  }
-
-  .card:hover {
-    cursor: grab;
-  }
-
-  .card > div:nth-child(2) {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .name {
-    font-size: 0.9rem;
-    font-weight: 500;
-    
-  }
-
-  .datetag {
-    display: flex;
-    gap: 10px;
-  }
-
-  .date {
-    font-size: 0.8rem;
-    color: var(--darkgray);
-  }
-
-  .worktag {
-    color: red;
-    background-color: pink;
-  }
-
-  .personaltag {
-    color: green;
-    background-color: greenyellow;
-  }
-
-  .card > div:first-child {
-    background-color: var(--lightaccent1);
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--lightaccent3);
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-
-  .highPriority {
-    border-left: 4px solid #fca5a5;
-  }
-
-  .mediumPriority {
-    border-left: 4px solid #fde047;
-  }
-
-  .lowPriority {
-    border-left: 4px solid #4ade80;
-  }
-
   button[type=button] {
     background-color: var(--lightaccent1);
     border-radius: 50%;
-    width: 30px;
     height: 30px;
     padding: 1px;
     position: relative;
     transition:0.5s;
+    width: 30px;
   }
 
   button[type=button]:hover {
@@ -137,10 +56,89 @@
     filter: brightness(0) invert(1);
   }
 
-
   button[type=button] > svg {
     position: absolute;
-    top: 2px;
     right: 2px;
+    top: 2px;
   }
+
+  .card {
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid var(--mediumgray);
+    box-shadow: 3px 3px var(--mediumgray2);
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin: 5px 0 15px 0;
+    padding: 5px 10px;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
+  .card:hover {
+    cursor: grab;
+  }
+
+  .card > div:first-child {
+    align-items: center;
+    background-color: var(--lightaccent1);
+    border-radius: 50%;
+    color: var(--lightaccent3);
+    display: flex;
+    font-size: 0.8rem;
+    font-weight: 500;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+  }
+
+  .card > div:nth-child(2) {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .date {
+    color: var(--darkgray);
+    font-size: 0.8rem;
+  }
+
+  .datetag {
+    display: flex;
+    gap: 10px;
+  }
+
+  .highPriority {
+    border-left: 4px solid #fca5a5;
+  }
+
+  .lowPriority {
+    border-left: 4px solid #4ade80;
+  }
+
+  .mediumPriority {
+    border-left: 4px solid #fde047;
+  }
+
+  .name {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .personaltag {
+    background-color: greenyellow;
+    color: green;
+  }
+
+  .worktag {
+    background-color: pink;
+    color: red;
+  }  
 </style>

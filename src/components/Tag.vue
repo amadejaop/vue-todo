@@ -1,15 +1,15 @@
 <template>
-    <div class="tagcontainer">
-        <slot></slot>
-    </div>
+  <div class="tagcontainer">
+    <slot></slot>
+  </div>
 </template>
 
 <style scoped>
-    .tagcontainer {
-        font-size: 0.7rem;
-        margin: 0;
-        height: 17px;
-        padding: 0 5px;
-        border-radius: 5px;
-    }
+  .tagcontainer {
+    border-radius: 5px;
+    font-size: 0.7rem;
+    height: 17px;
+    margin: 0;
+    padding: 0 5px;
+  }
 </style>
