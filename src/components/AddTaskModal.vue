@@ -1,23 +1,23 @@
 <script setup>
-  import { ref } from 'vue';
-  import { VueFinalModal } from 'vue-final-modal'
-  import 'vue-final-modal/style.css'
-  import BlueButton from './BlueButton.vue';
-  import RedButton from './RedButton.vue';
+import { ref } from 'vue';
+import { VueFinalModal } from 'vue-final-modal'
+import 'vue-final-modal/style.css'
+import BlueButton from './BlueButton.vue';
+import RedButton from './RedButton.vue';
 
-  const emit = defineEmits(['confirm', 'close'])
-  const addTaskName = ref('Work on project A');
-  const addTaskDate = ref(getTodaysDate());
-  const addTaskTag = ref('work');
-  const addTaskPriority = ref('high');
+const emit = defineEmits(['confirm', 'close'])
+const addTaskName = ref('Work on project A');
+const addTaskDate = ref(getTodaysDate());
+const addTaskTag = ref('work');
+const addTaskPriority = ref('high');
 
-  function getTodaysDate() {
-    const today = new Date();
-    const todaysYear = today.getFullYear();
-    const todaysMonth = (today.getMonth() + 1).toString().padStart(2, '0');
-    const todaysDay = today.getDate().toString().padStart(2, '0');
-    return (todaysYear + '-' + todaysMonth + '-' + todaysDay);
-  }
+function getTodaysDate() {
+  const today = new Date();
+  const todaysYear = today.getFullYear();
+  const todaysMonth = (today.getMonth() + 1).toString().padStart(2, '0');
+  const todaysDay = today.getDate().toString().padStart(2, '0');
+  return (todaysYear + '-' + todaysMonth + '-' + todaysDay);
+}
 </script>
 
 <template>
@@ -54,7 +54,7 @@
   </VueFinalModal>
 </template>
 
-<style scoped>
+<style>
   .btns {
     display: flex;
     gap: 1rem;
@@ -66,6 +66,7 @@
     display: flex;
     justify-content: center;
   }
+  
   .confirm-modal-content {
     background: #fff;
     border-radius: 0.5rem;
