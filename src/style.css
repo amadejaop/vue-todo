@@ -21,6 +21,10 @@
   --darkgray: #6b7280;
 }
 
+.dark {
+  color: red;
+}
+
 a {
   color: var(--darkgray);
   text-decoration: inherit;

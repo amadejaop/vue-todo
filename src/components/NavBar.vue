@@ -1,5 +1,34 @@
 <script setup>
   import { RouterLink } from 'vue-router';
+  import { ref, onMounted, watch } from 'vue';
+
+  const darkMode = ref();
+
+  watch(darkMode, (newValue) => {
+    localStorage.setItem('darkMode', JSON.stringify(newValue));
+  }, { deep: true })
+
+  onMounted(() => {
+    darkMode.value = JSON.parse(localStorage.getItem('darkMode')) || false;
+    console.log(darkMode.value)
+  })
+
+  function toggleDarkMode() {
+    darkMode.value = !darkMode.value;
+    if (darkMode.value) {
+      setDarkMode();
+    } else {
+      setLightMode();
+    }
+  }
+
+  function setDarkMode() {
+    document.documentElement.style.setProperty('--lightaccent3', 'black');
+  }
+
+  function setLightMode() {
+    document.documentElement.style.setProperty('--lightaccent3', '#60a5fa');
+  }
 </script>
 
 <template>
@@ -11,7 +40,7 @@
         <RouterLink class="routerlink" to="/calendar">Calendar</RouterLink>
       </nav>
     </div>
-    <button>Dark mode</button>
+    <button @click="toggleDarkMode">Dark mode</button>
   </header>
 </template>
 
