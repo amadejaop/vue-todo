@@ -3,26 +3,23 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 
-  --lightaccent1: #eff6ff;
-  --lightaccent2: #bfdbfe;
-  --lightaccent3: #60a5fa;
-
-  --lightgray: #f3f4f6;
-  --mediumgray: #e5e7eb;
-  --mediumgray2: #bebebe;
-  --darkgray: #6b7280;
-}
-
-.dark {
-  color: red;
+  --bgcolor: #f3f4f6;
+  --textcolor: #111827;
+  --uilightest: #fff;
+  --uilight: #e5e7eb;
+  --uimedium: #bebebe;
+  --uidark: #6b7280;
+  --lightaccent: #eff6ff;
+  --mediumaccent: #bfdbfe;
+  --darkaccent: #60a5fa;
+  --redcolor: #fca5a5;
+  --yellowcolor: #fde047;
+  --greencolor: #4ade80;
+  --redbutton: #f87171;
 }
 
 a {

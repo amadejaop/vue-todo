@@ -10,7 +10,6 @@
 
   onMounted(() => {
     darkMode.value = JSON.parse(localStorage.getItem('darkMode')) || false;
-    console.log(darkMode.value)
   })
 
   function toggleDarkMode() {
@@ -47,8 +46,8 @@
 <style scoped>
   header {
     align-items: center;
-    background-color: white;
-    border-bottom: 1px solid var(--mediumgray);
+    background-color: var(--uilightest);
+    border-bottom: 1px solid var(--uilight);
     display: flex;
     height: 60px;
     justify-content: space-around;
@@ -63,7 +62,7 @@
   }
 
   header > div > a {
-    color: var(--darkgray);
+    color: var(--uidark);
     font-size: 1.3rem;
     font-weight: 600;
     height: 60px;
@@ -73,7 +72,7 @@
   }
 
   header > div > a:hover {
-    color: var(--lightaccent3)
+    color: var(--darkaccent)
   }
 
   nav {
@@ -84,6 +83,7 @@
   
   .routerlink {
     box-sizing: border-box;
+    color: var(--uidark);
     display: inline-block;
     height: 60px;
     line-height: 60px;
@@ -92,7 +92,7 @@
 
   .routerlink:hover,
   .active {
-    border-bottom: 3px solid var(--lightaccent3);
+    border-bottom: 3px solid var(--darkaccent);
     color: #000;
   }
 </style>

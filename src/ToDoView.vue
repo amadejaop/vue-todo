@@ -167,19 +167,19 @@ const { open, close } = useModal({
   
 <style scoped>
   button[type=button] {
-    background-color: var(--lightaccent3);
-    color: white;
+    background-color: var(--darkaccent);
+    color: var(--uilightest);
     transition: .2s;
   }
 
   button[type=button]:hover {
-    background-color: white;
-    border: 1px solid var(--lightaccent3);
-    color: var(--lightaccent3);
+    background-color: var(--uilightest);
+    border: 1px solid var(--darkaccent);
+    color: var(--darkaccent);
   }
 
   .container {
-    background-color: white;
+    background-color: var(--uilightest);
     border-radius: 20px;
     box-sizing: border-box;
     margin: 100px 0 50px 0;

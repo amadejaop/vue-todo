@@ -68,7 +68,7 @@ function getTodaysDate() {
   }
   
   .confirm-modal-content {
-    background: #fff;
+    background: var(--uilightest);
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -91,8 +91,9 @@ function getTodaysDate() {
 
   .confirm-modal-content > form > label > input {
     border-radius: 0.5rem;
-    border: 1px solid var(--mediumgray2);
+    border: 1px solid var(--uimedium);
     box-sizing: border-box;
+    color: var(--textcolor);
     font-family: Poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 1rem;
     padding: 5px 10px;
@@ -102,7 +103,7 @@ function getTodaysDate() {
   .confirm-modal-content > form > fieldset {
     align-items: baseline;
     border-radius: 0.5rem;
-    border: 1px solid var(--mediumgray2);
+    border: 1px solid var(--uimedium);
     display: flex;
   }
 

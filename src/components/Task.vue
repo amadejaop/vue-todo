@@ -39,7 +39,7 @@
 
 <style scoped>
   button[type=button] {
-    background-color: var(--lightaccent1);
+    background-color: var(--lightaccent);
     border-radius: 50%;
     height: 30px;
     padding: 1px;
@@ -49,7 +49,7 @@
   }
 
   button[type=button]:hover {
-    background-color: var(--lightaccent3);
+    background-color: var(--darkaccent);
   }
 
   button[type=button]:hover > svg {
@@ -66,8 +66,8 @@
     align-items: center;
     background-color: white;
     border-radius: 15px;
-    border: 1px solid var(--mediumgray);
-    box-shadow: 3px 3px var(--mediumgray2);
+    border: 1px solid var(--uilight);
+    box-shadow: 3px 3px var(--uimedium);
     display: flex;
     gap: 10px;
     justify-content: space-between;
@@ -87,9 +87,9 @@
 
   .card > div:first-child {
     align-items: center;
-    background-color: var(--lightaccent1);
+    background-color: var(--lightaccent);
     border-radius: 50%;
-    color: var(--lightaccent3);
+    color: var(--darkaccent);
     display: flex;
     font-size: 0.8rem;
     font-weight: 500;
@@ -106,7 +106,7 @@
   }
 
   .date {
-    color: var(--darkgray);
+    color: var(--uidark);
     font-size: 0.8rem;
   }
 
@@ -116,15 +116,15 @@
   }
 
   .highPriority {
-    border-left: 4px solid #fca5a5;
+    border-left: 4px solid var(--redcolor);
   }
 
   .lowPriority {
-    border-left: 4px solid #4ade80;
+    border-left: 4px solid var(--greencolor);
   }
 
   .mediumPriority {
-    border-left: 4px solid #fde047;
+    border-left: 4px solid var(--yellowcolor);
   }
 
   .name {

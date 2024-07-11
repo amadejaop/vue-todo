@@ -14,14 +14,14 @@
 
 <style scoped>
   footer {
-    background-color: antiquewhite;
+    background-color: var(--uilightest);
     bottom: 0;
     position: fixed;
     width: 100%;
   }
 
   main {
-    background-color: var(--lightgray);
+    background-color: var(--bgcolor);
     min-height: 100vh;
   }
 </style>
