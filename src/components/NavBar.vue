@@ -10,6 +10,11 @@
 
   onMounted(() => {
     darkMode.value = JSON.parse(localStorage.getItem('darkMode')) || false;
+    if (darkMode.value) {
+      setDarkMode();
+    } else {
+      setLightMode();
+    }
   })
 
   function toggleDarkMode() {
@@ -22,11 +27,35 @@
   }
 
   function setDarkMode() {
-    document.documentElement.style.setProperty('--lightaccent3', 'black');
+    document.documentElement.style.setProperty('--bgcolor', '#030712');
+    document.documentElement.style.setProperty('--textcolor', '#fff');
+    document.documentElement.style.setProperty('--uilightest', '#1f2937');
+    document.documentElement.style.setProperty('--uilight', '#111827');
+    document.documentElement.style.setProperty('--uimedium', '#030712');
+    document.documentElement.style.setProperty('--uidark', '#d1d5db');
+    document.documentElement.style.setProperty('--lightaccent', '#1d4ed8');
+    document.documentElement.style.setProperty('--mediumaccent', '#2563eb');
+    document.documentElement.style.setProperty('--darkaccent', '#2563eb');
+    document.documentElement.style.setProperty('--redcolor', '#ef4444');
+    document.documentElement.style.setProperty('--yellowcolor', '#facc15');
+    document.documentElement.style.setProperty('--greencolor', '#65a30d');
+    document.documentElement.style.setProperty('--redbutton', '#dc2626');  
   }
 
   function setLightMode() {
-    document.documentElement.style.setProperty('--lightaccent3', '#60a5fa');
+    document.documentElement.style.setProperty('--bgcolor', '#f3f4f6');
+    document.documentElement.style.setProperty('--textcolor', '#111827');
+    document.documentElement.style.setProperty('--uilightest', '#fff');
+    document.documentElement.style.setProperty('--uilight', '#e5e7eb');
+    document.documentElement.style.setProperty('--uimedium', '#bebebe');
+    document.documentElement.style.setProperty('--uidark', '#6b7280');
+    document.documentElement.style.setProperty('--lightaccent', '#eff6ff');
+    document.documentElement.style.setProperty('--mediumaccent', '#bfdbfe');
+    document.documentElement.style.setProperty('--darkaccent', '#60a5fa');
+    document.documentElement.style.setProperty('--redcolor', '#fca5a5');
+    document.documentElement.style.setProperty('--yellowcolor', '#fde047');
+    document.documentElement.style.setProperty('--greencolor', '#4ade80');
+    document.documentElement.style.setProperty('--redbutton', '#f87171');    
   }
 </script>
 
@@ -93,6 +122,6 @@
   .routerlink:hover,
   .active {
     border-bottom: 3px solid var(--darkaccent);
-    color: #000;
+    color: var(--textcolor);
   }
 </style>

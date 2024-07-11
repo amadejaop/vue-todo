@@ -211,6 +211,7 @@ const { open, close } = useModal({
 
   .listheader > h2,
   .container > h2 {
+    color: var(--textcolor);
     font-size: 1.3rem;
     font-weight: 300;
     margin: 0;

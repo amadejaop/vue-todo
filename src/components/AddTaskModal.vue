@@ -70,6 +70,7 @@ function getTodaysDate() {
   .confirm-modal-content {
     background: var(--uilightest);
     border-radius: 0.5rem;
+    color: var(--textcolor);
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -90,6 +91,7 @@ function getTodaysDate() {
   }
 
   .confirm-modal-content > form > label > input {
+    background-color: var(--uilight);
     border-radius: 0.5rem;
     border: 1px solid var(--uimedium);
     box-sizing: border-box;

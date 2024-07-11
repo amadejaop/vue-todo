@@ -7,7 +7,7 @@
 <style scoped>
   button {
     background-color: var(--darkaccent);
-    color: var(--uilightest);
+    color: white;
     padding: 7px 15px;
   }
   button:hover {

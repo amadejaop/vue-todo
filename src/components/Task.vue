@@ -64,7 +64,7 @@
 
   .card {
     align-items: center;
-    background-color: white;
+    background-color: var(--uilightest);
     border-radius: 15px;
     border: 1px solid var(--uilight);
     box-shadow: 3px 3px var(--uimedium);
@@ -128,6 +128,7 @@
   }
 
   .name {
+    color: var(--textcolor);
     font-size: 0.9rem;
     font-weight: 500;
   }

@@ -13,7 +13,7 @@
   }
   button:hover {
     background-color: var(--redbutton);
-    color: var(--uilightest);
+    color: white;
     cursor: pointer;
   }
 </style>
