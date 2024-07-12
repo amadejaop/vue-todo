@@ -29,16 +29,16 @@
   function setDarkMode() {
     document.documentElement.style.setProperty('--bgcolor', '#030712');
     document.documentElement.style.setProperty('--textcolor', '#fff');
-    document.documentElement.style.setProperty('--uilightest', '#1f2937');
-    document.documentElement.style.setProperty('--uilight', '#111827');
+    document.documentElement.style.setProperty('--uilightest', '#0D131F');
+    document.documentElement.style.setProperty('--uilight', '#080D19');
     document.documentElement.style.setProperty('--uimedium', '#030712');
     document.documentElement.style.setProperty('--uidark', '#d1d5db');
-    document.documentElement.style.setProperty('--lightaccent', '#1d4ed8');
+    document.documentElement.style.setProperty('--lightaccent', '#eff6ff');
     document.documentElement.style.setProperty('--mediumaccent', '#2563eb');
-    document.documentElement.style.setProperty('--darkaccent', '#2563eb');
-    document.documentElement.style.setProperty('--redcolor', '#ef4444');
-    document.documentElement.style.setProperty('--yellowcolor', '#facc15');
-    document.documentElement.style.setProperty('--greencolor', '#65a30d');
+    document.documentElement.style.setProperty('--darkaccent', '#1d4ed8');
+    document.documentElement.style.setProperty('--redcolor', '#991b1b');
+    document.documentElement.style.setProperty('--yellowcolor', '#ca8a04');
+    document.documentElement.style.setProperty('--greencolor', '#3f6212');
     document.documentElement.style.setProperty('--redbutton', '#dc2626');  
   }
 

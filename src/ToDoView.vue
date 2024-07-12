@@ -166,18 +166,6 @@ const { open, close } = useModal({
 </template>
   
 <style scoped>
-  button[type=button] {
-    background-color: var(--darkaccent);
-    color: var(--uilightest);
-    transition: .2s;
-  }
-
-  button[type=button]:hover {
-    background-color: var(--uilightest);
-    border: 1px solid var(--darkaccent);
-    color: var(--darkaccent);
-  }
-
   .container {
     background-color: var(--uilightest);
     border-radius: 20px;
