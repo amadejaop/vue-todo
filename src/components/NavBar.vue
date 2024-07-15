@@ -1,6 +1,7 @@
 <script setup>
   import { RouterLink } from 'vue-router';
   import { ref, onMounted, watch } from 'vue';
+  import NeutralButton from './NeutralButton.vue';
 
   const darkMode = ref();
 
@@ -68,7 +69,7 @@
         <RouterLink class="routerlink" to="/calendar">Calendar</RouterLink>
       </nav>
     </div>
-    <button @click="toggleDarkMode">Dark mode</button>
+    <NeutralButton @click="toggleDarkMode">Dark mode</NeutralButton>
   </header>
 </template>
 
