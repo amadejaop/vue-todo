@@ -2,6 +2,7 @@
   import Tag from "./Tag.vue"
   import EditTaskModal from './EditTaskModal.vue';
   import { ModalsContainer, useModal } from 'vue-final-modal';
+  import { ref, watch, onMounted, nextTick } from 'vue'
 
   defineProps({
     id: String,
@@ -13,22 +14,39 @@
     taskStatus: "todo" | "doing" | "done"
   })
 
+  const editedTodo = ref([])
+
+  watch(editedTodo, (edited) => {
+  localStorage.setItem('todoList', JSON.stringify(edited))
+}, { deep: true })
+
+onMounted(() => {
+  editedTodo.value = JSON.parse(localStorage.getItem('todoList'))
+})
+
   const { open, close } = useModal({
     component: EditTaskModal,
     attrs: {
       onConfirm(params) {
         const editId = JSON.parse(localStorage.getItem('currentId'))
-        const editTodoList = JSON.parse(localStorage.getItem('todoList'))
-        const index = editTodoList.findIndex((task) => task.id == editId)
+        const index = editedTodo.value.findIndex((task) => task.id == editId)
 
-        editTodoList[index].taskName = params[0];
-        editTodoList[index].taskDate = formatDate(params[1]);
-        editTodoList[index].unformattedDate = params[1];
-        editTodoList[index].taskTag = params[2];
-        editTodoList[index].taskPriority = params[3];
-        console.log(editTodoList[index])
-        console.log(editTodoList)
-        localStorage.setItem('todoList', JSON.stringify(editTodoList));
+        editedTodo.value[index].taskName = params[0];
+        editedTodo.value[index].taskDate = formatDate(params[1]);
+        editedTodo.value[index].unformattedDate = params[1];
+        editedTodo.value[index].taskTag = params[2];
+        editedTodo.value[index].taskPriority = params[3];
+        console.log(editedTodo.value[index])
+        console.log(editedTodo.value)
+        location.reload();
+        close();
+      },
+      onDelete() {
+        const deleteId = JSON.parse(localStorage.getItem('currentId'))
+        const todoListDelete = JSON.parse(localStorage.getItem('todoList'))
+        const index = todoListDelete.findIndex((task) => task.id == deleteId)
+        todoListDelete.splice(index, 1)
+        localStorage.setItem('todoList', JSON.stringify(todoListDelete));
         location.reload();
         close();
       },
@@ -39,7 +57,6 @@
   })
 
   function openModal(id) {
-    console.log('opening modal...');
     localStorage.setItem('currentId', JSON.stringify(id))
     open();
   }

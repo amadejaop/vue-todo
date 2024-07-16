@@ -59,9 +59,6 @@ const { open, close } = useModal({
     component: AddTaskModal,
     attrs: {
       onConfirm(params) {
-        // adding info obtained to the array
-        //id is idNumber++
-        //taskStatus is automatically todo
         idNumber.value++;
         const newId = idNumber.value.toString();
         const newDate = formatDate(params[1])
@@ -84,6 +81,12 @@ const { open, close } = useModal({
     },
   })
 
+  function inCount() {
+    console.log(todoCount.value);
+    todoCount.value++
+    console.log(todoCount.value);
+  }
+
   function formatDate(date) {
     const formattedDate = date.split('-');
     const day = parseInt(formattedDate[2], 10);
@@ -96,7 +99,7 @@ const { open, close } = useModal({
 </script>
 
 <template>
-  <div class="todo-view" @update-count="incrementCount">
+  <div class="todo-view">
     <div class="container">
       <div class="listheader">
         <h2>To do</h2>

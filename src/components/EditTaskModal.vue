@@ -4,8 +4,9 @@ import { VueFinalModal } from 'vue-final-modal'
 import 'vue-final-modal/style.css'
 import BlueButton from './BlueButton.vue';
 import RedButton from './RedButton.vue';
+import NeutralButton from './NeutralButton.vue'
 
-const emit = defineEmits(['confirm', 'close'])
+const emit = defineEmits(['confirm', 'close', 'delete'])
 const editId = Number(JSON.parse(localStorage.getItem('currentId')))
 const editTodoList = JSON.parse(localStorage.getItem('todoList'))
 const index = editTodoList.findIndex((task) => task.id == editId)
@@ -41,7 +42,8 @@ const editTaskPriority = ref(editTodoList[index].taskPriority);
         </fieldset>
       
         <div class="btns">
-          <RedButton type="button" @click="emit('close')">Cancel</RedButton>
+          <RedButton type="button" @click="emit('delete')">Delete</RedButton>
+          <NeutralButton type="button" @click="emit('close')">Cancel</NeutralButton>
           <BlueButton type="submit" @click="emit('confirm', [editTaskName, editTaskDate, editTaskTag, editTaskPriority])">
             Edit task
           </BlueButton>
@@ -71,7 +73,7 @@ const editTaskPriority = ref(editTodoList[index].taskPriority);
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-    width: 300px;
+    width: 305px;
   }
 
   .confirm-modal-content > h3 {

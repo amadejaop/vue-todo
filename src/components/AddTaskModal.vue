@@ -75,7 +75,7 @@ function getTodaysDate() {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-    width: 300px;
+    width: 305px;
   }
 
   .confirm-modal-content > h3 {
