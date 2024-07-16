@@ -15,10 +15,9 @@ const emit = defineEmits(['confirm', 'close'])
     content-transition="vfm-fade"
   >
     <h3>Edit Task</h3>
-      
         <div class="btns">
           <RedButton type="button" @click="emit('close')">Cancel</RedButton>
-          <BlueButton type="submit" @click="emit('confirm'), $event">
+          <BlueButton type="submit" @click="emit('confirm')">
             Edit task
           </BlueButton>
         </div>
