@@ -3,7 +3,6 @@
   import EditTaskModal from './EditTaskModal.vue';
   import { ModalsContainer, useModal } from 'vue-final-modal';
 
-
   defineProps({
     id: String,
     taskName: String,
@@ -18,11 +17,9 @@
     component: EditTaskModal,
     attrs: {
       onConfirm(params) {
-        console.log('edit in parent');
         const editId = JSON.parse(localStorage.getItem('currentId'))
         const editTodoList = JSON.parse(localStorage.getItem('todoList'))
         const index = editTodoList.findIndex((task) => task.id == editId)
-        console.log(params)
 
         editTodoList[index].taskName = params[0];
         editTodoList[index].taskDate = formatDate(params[1]);
@@ -32,6 +29,7 @@
         console.log(editTodoList[index])
         console.log(editTodoList)
         localStorage.setItem('todoList', JSON.stringify(editTodoList));
+        location.reload();
         close();
       },
       onClose() {

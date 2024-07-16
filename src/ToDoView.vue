@@ -96,7 +96,7 @@ const { open, close } = useModal({
 </script>
 
 <template>
-  <div class="todo-view">
+  <div class="todo-view" @update-count="incrementCount">
     <div class="container">
       <div class="listheader">
         <h2>To do</h2>

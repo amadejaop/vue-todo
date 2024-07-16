@@ -24,7 +24,6 @@ const editTaskPriority = ref(editTodoList[index].taskPriority);
     content-transition="vfm-fade"
   >
   <h3>Edit Task</h3>
-  {{ editTaskName }}
       <form @submit.prevent>
         <label for="editTaskName">* Task: <input v-model="editTaskName"  minlength="3" required></label>
         <label for="editTaskDate">* Date: <input v-model="editTaskDate" type="date" required></label>
