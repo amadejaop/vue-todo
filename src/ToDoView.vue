@@ -70,6 +70,7 @@ const { open, close } = useModal({
           id: newId,
           taskName: params[0],
           taskDate: newDate,
+          unformattedDate: params[1],
           taskTag: params[2],
           taskPriority: params[3],
           taskStatus: "todo"
