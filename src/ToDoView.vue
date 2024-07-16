@@ -6,7 +6,7 @@ import { ModalsContainer, useModal } from 'vue-final-modal';
 import AddTaskModal from './components/AddTaskModal.vue'
 import BlueButton from './components/BlueButton.vue';
 
-let idNumber = 0;
+let idNumber = ref(0);
 
 const todoList = ref([])
 const doingList = ref([])
@@ -24,10 +24,15 @@ watch(doneList, (newDone) => {
   localStorage.setItem('doneList', JSON.stringify(newDone))
 }, { deep: true })
 
+watch(idNumber, (newIdNumber) => {
+  localStorage.setItem('idNumber', JSON.stringify(newIdNumber))
+}, { deep: true })
+
 onMounted(() => {
   todoList.value = JSON.parse(localStorage.getItem('todoList')) || []
   doingList.value = JSON.parse(localStorage.getItem('doingList')) || []
   doneList.value = JSON.parse(localStorage.getItem('doneList')) || []
+  idNumber.value = Number(JSON.parse(localStorage.getItem('idNumber'))) || 0
 })
 
 function onUpdate() {
@@ -57,8 +62,8 @@ const { open, close } = useModal({
         // adding info obtained to the array
         //id is idNumber++
         //taskStatus is automatically todo
-        idNumber++;
-        const newId = idNumber.toString();
+        idNumber.value++;
+        const newId = idNumber.value.toString();
         const newDate = formatDate(params[1])
         
         const newTask = {
