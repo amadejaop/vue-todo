@@ -14,7 +14,7 @@ const routes = [
 const router = createRouter({
     linkActiveClass: 'active',
     linkExactActiveClass: 'active',
-    history: createWebHistory(),
+    history: createWebHistory('/vue-todo/'),
     routes,
 })
 
