@@ -63,7 +63,7 @@
 <template>
   <header>
     <div>
-      <a href="/">Quendle</a>
+      <RouterLink class="titlelink" to="/">Quendle</RouterLink>
       <nav>
         <RouterLink class="routerlink" to="/todo">To Do List</RouterLink>
         <RouterLink class="routerlink" to="/calendar">Calendar</RouterLink>
@@ -92,7 +92,7 @@
     gap: 4vw;
   }
 
-  header > div > a {
+  header > div > .titlelink {
     color: var(--uidark);
     font-size: 1.3rem;
     font-weight: 600;
@@ -102,8 +102,13 @@
     transition: .3s;
   }
 
-  header > div > a:hover {
-    color: var(--darkaccent)
+  header > div > .titlelink:hover {
+    color: var(--darkaccent);
+  }
+
+  header > div > .titlelink.active {
+    color: var(--darkaccent);
+    border: none;
   }
 
   nav {
