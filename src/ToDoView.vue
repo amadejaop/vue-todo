@@ -182,14 +182,10 @@ const { open, close } = useModal({
   .comingup {
     grid-column: 1 / 4;
     grid-row: 2 / 3;
-    background-color: pink;
+    background-color: var(--uilightest);
     border-radius: 20px;
     padding: 15px;
-    margin-bottom: 70px;
-  }
-
-  .comingup > h2 {
-    color: red;
+    margin-bottom: 120px;
   }
 
   .container {
@@ -225,7 +221,8 @@ const { open, close } = useModal({
   }
 
   .listheader > h2,
-  .container > h2 {
+  .container > h2,
+  .comingup > h2 {
     color: var(--textcolor);
     font-size: 1.3rem;
     font-weight: 300;
