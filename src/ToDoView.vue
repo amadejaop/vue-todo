@@ -170,19 +170,37 @@ const { open, close } = useModal({
         </div>
       </VueDraggable>
     </div>
+    <div class="comingup">
+      <h2>Coming up...</h2>
     </div>
+  </div>
   <ModalsContainer />
+  
 </template>
   
 <style scoped>
+  .comingup {
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+    background-color: pink;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 70px;
+  }
+
+  .comingup > h2 {
+    color: red;
+  }
+
   .container {
     background-color: var(--uilightest);
     border-radius: 20px;
     box-sizing: border-box;
-    margin: 100px 0 50px 0;
+    margin: 100px 0 0 0;
     min-height: 400px;
     padding: 15px;
-    width: 350px;
+    max-width: 350px;
+    min-width: 240px;
   }
 
   .container2 {
@@ -216,8 +234,11 @@ const { open, close } = useModal({
   }
 
   .todo-view {
-    display: flex;
+    display: grid;
     gap: 1rem;
-    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    margin: 0 auto;
+    max-width: 1082px;
   }
 </style>
