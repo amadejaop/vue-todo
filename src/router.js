@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from "vue-router"
+import { createWebHashHistory, createRouter } from "vue-router"
 import ToDoView from "./ToDoView.vue"
 import CalendarView from "./CalendarView.vue"
 import HomeView from "./HomeView.vue"
@@ -14,7 +14,7 @@ const routes = [
 const router = createRouter({
     linkActiveClass: 'active',
     linkExactActiveClass: 'active',
-    history: createWebHistory('/vue-todo/'),
+    history: createWebHashHistory(),
     routes,
 })
 

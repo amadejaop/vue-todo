@@ -10,7 +10,7 @@
   </main>
   <footer>
     <p>Designed and coded by <a href="https://amadejaop.github.io/">Amadeja Obšteter Privošnik</a>.</p>
-    <p>Check out the complete code on <a href="https://github.com/amadejaop/vue-todo">GitHub</a>.</p>
+    <p>Check out the souce code on <a href="https://github.com/amadejaop/vue-todo">GitHub</a>.</p>
     <p>Take a look at <a href="https://amadejaop.github.io/#projects">my complete portfolio</a>.</p>
   </footer>
 </template>
