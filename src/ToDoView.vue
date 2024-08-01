@@ -8,32 +8,40 @@ import BlueButton from './components/BlueButton.vue';
 
 let idNumber = ref(0);
 
-const todoList = ref([])
-const doingList = ref([])
-const doneList = ref([])
+const todoList = ref([]);
+const todoToday = ref([]);
+const doingList = ref([]);
+const doneList = ref([]);
+const doneToday = ref([]);
+const dateToday = getTodaysDate();
 
 watch(todoList, (newTodo) => {
   localStorage.setItem('todoList', JSON.stringify(newTodo))
-}, { deep: true })
+  todoToday.value = todoList.value.filter(task => task.unformattedDate === dateToday);
+}, { deep: true });
 
 watch(doingList, (newDoing) => {
   localStorage.setItem('doingList', JSON.stringify(newDoing))
-}, { deep: true })
+}, { deep: true });
 
 watch(doneList, (newDone) => {
   localStorage.setItem('doneList', JSON.stringify(newDone))
-}, { deep: true })
+  doneToday.value = doneList.value.filter(task => task.unformattedDate === dateToday);
+}, { deep: true });
 
 watch(idNumber, (newIdNumber) => {
   localStorage.setItem('idNumber', JSON.stringify(newIdNumber))
-}, { deep: true })
+}, { deep: true });
 
 onMounted(() => {
   todoList.value = JSON.parse(localStorage.getItem('todoList')) || []
+  todoToday.value = todoList.value.filter(task => task.unformattedDate === dateToday);
   doingList.value = JSON.parse(localStorage.getItem('doingList')) || []
   doneList.value = JSON.parse(localStorage.getItem('doneList')) || []
+  doneToday.value = doneList.value.filter(task => task.unformattedDate === dateToday);
   idNumber.value = Number(JSON.parse(localStorage.getItem('idNumber'))) || 0
-})
+  console.log(todoToday.value)
+});
 
 function onUpdate() {
   console.log('update')
@@ -53,6 +61,14 @@ function changeStatusDoing(item) {
 }
 function changeStatusDone(item) {
     item.taskStatus = "done";
+}
+
+function getTodaysDate() {
+  const today = new Date();
+  const todaysYear = today.getFullYear();
+  const todaysMonth = (today.getMonth() + 1).toString().padStart(2, '0');
+  const todaysDay = today.getDate().toString().padStart(2, '0');
+  return (todaysYear + '-' + todaysMonth + '-' + todaysDay);
 }
 
 const { open, close } = useModal({
@@ -107,7 +123,7 @@ const { open, close } = useModal({
       </div>
       <VueDraggable
         class="container2"
-        v-model="todoList"
+        v-model="todoToday"
         animation="150"
         dragClass="drag"
         ghostClass="ghost"
@@ -117,7 +133,7 @@ const { open, close } = useModal({
         @remove="remove"
       >
         <div
-          v-for="item in todoList"
+          v-for="item in todoToday"
           :key="item.id"
         >
           {{ changeStatusTodo(item) }}
@@ -152,7 +168,7 @@ const { open, close } = useModal({
       <h2 class="listheader">Done</h2>
       <VueDraggable
         class="container2"        
-        v-model="doneList"
+        v-model="doneToday"
         animation="150"
         dragClass="drag"
         group="people"
@@ -162,7 +178,7 @@ const { open, close } = useModal({
         @remove="remove"
       >
         <div
-          v-for="item in doneList"
+          v-for="item in doneToday"
           :key="item.id"
         >
           {{ changeStatusDone(item) }}
