@@ -77,8 +77,9 @@ function getTodaysDate() {
 function getNextSevenDays(date) {
   const splittedDate = date.split('-');
   const day = parseInt(splittedDate[2], 10);
-  const monthIndex = parseInt(splittedDate[1], 10) - 1;
-  const year = splittedDate[0];
+  const monthIndex = parseInt(splittedDate[1], 10) - 1;  
+  let month = monthIndex + 1;
+  let year = splittedDate[0];
   const arrayOfDates = [];
   const leapYear = isLeapYear(year);
   const daysInMonth = [31, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -91,18 +92,30 @@ function getNextSevenDays(date) {
   let nextDay = day;
   let fullDate = "";
 
-  if ((day - 7) <= daysInMonth[monthIndex]) {
-    // add date to array seven times, incrementing nextDay each time
-    const month = monthIndex + 1;
+  if ((day + 7) <= daysInMonth[monthIndex]) {
     for (let i = 0; i < 7; i++) {
       nextDay++;
       fullDate = year.toString() + "-" + month.toString().padStart(2, '0') + "-" + nextDay.toString().padStart(2, '0');
       arrayOfDates.push(fullDate);
     }
-    console.log(arrayOfDates)
   } else {
-    if (nextDay++ <= daysInMonth[monthIndex]) {
-      console.log("special")
+    let ctr = 0;
+    while (nextDay++ < daysInMonth[monthIndex]) {
+      ctr++;
+      fullDate = year.toString() + "-" + month.toString().padStart(2, '0') + "-" + nextDay.toString().padStart(2, '0');
+      arrayOfDates.push(fullDate);
+    }
+    nextDay = 0;
+    month++;
+    if (month === 13) {
+      month = 1;
+      year++;
+    }
+    while (ctr < 7) {
+      ctr++;
+      nextDay++;
+      fullDate = year.toString() + "-" + month.toString().padStart(2, '0') + "-" + nextDay.toString().padStart(2, '0');
+      arrayOfDates.push(fullDate);
     }
   } 
   return arrayOfDates;
