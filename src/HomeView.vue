@@ -3,6 +3,10 @@
     <h1>Quendle</h1>
     <p class="subtext">Quendle is an easy to use drag and drop to do app.</p>
     <h2>Updates</h2>
+    <h3>August 5th, 2024</h3>
+    <ul>
+      <li>the coming up section of the to do list now shows tasks due in the next 7 days</li>
+    </ul>
     <h3>August 1st, 2024</h3>
     <ul>
       <li>to do and done lists now show only tasks created today, in order to avoid cluttering the lists with tasks done in the past or tasks coming up in the future</li>
@@ -34,7 +38,7 @@
 
   ul > li::marker {
     color: var(--textcolor);
-    content: '🞕  ';
+    content: '◈  ';
     font-size: 1.1rem;
   }
 </style>

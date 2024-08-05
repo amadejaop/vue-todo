@@ -20,7 +20,7 @@ const nextSevenDays = getNextSevenDays(dateToday);
 watch(todoList, (newTodo) => {
   localStorage.setItem('todoList', JSON.stringify(newTodo))
   todoToday.value = todoList.value.filter(task => task.unformattedDate === dateToday);
-  comingupList.value = todoList.value.filter(task => task.unformattedDate !== dateToday);
+  createComingupList();
 }, { deep: true });
 
 watch(doingList, (newDoing) => {
@@ -39,7 +39,7 @@ watch(idNumber, (newIdNumber) => {
 onMounted(() => {
   todoList.value = JSON.parse(localStorage.getItem('todoList')) || []
   todoToday.value = todoList.value.filter(task => task.unformattedDate === dateToday);
-  comingupList.value = todoList.value.filter(task => task.unformattedDate !== dateToday);
+  createComingupList();
   doingList.value = JSON.parse(localStorage.getItem('doingList')) || []
   doneList.value = JSON.parse(localStorage.getItem('doneList')) || []
   doneToday.value = doneList.value.filter(task => task.unformattedDate === dateToday);
@@ -64,6 +64,17 @@ function changeStatusDoing(item) {
 }
 function changeStatusDone(item) {
     item.taskStatus = "done";
+}
+
+function createComingupList() {
+  for (const date of nextSevenDays) {
+    for (const task of todoList.value) {
+      if (task.unformattedDate === date) {
+        if (comingupList.value.indexOf(task) === -1)
+        comingupList.value.push(task);
+      }
+    }
+  }
 }
 
 function getTodaysDate() {
@@ -272,6 +283,10 @@ const { open, close } = useModal({
 
   .comingup > ul > li {
     text-align: left;
+  }
+
+  .comingup > ul > li::marker {
+    content: "◈ ";
   }
 
   .container {
