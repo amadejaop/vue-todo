@@ -14,10 +14,13 @@ const doingList = ref([]);
 const doneList = ref([]);
 const doneToday = ref([]);
 const dateToday = getTodaysDate();
+const comingupList = ref([]);
+const nextSevenDays = getNextSevenDays(dateToday);
 
 watch(todoList, (newTodo) => {
   localStorage.setItem('todoList', JSON.stringify(newTodo))
   todoToday.value = todoList.value.filter(task => task.unformattedDate === dateToday);
+  comingupList.value = todoList.value.filter(task => task.unformattedDate !== dateToday);
 }, { deep: true });
 
 watch(doingList, (newDoing) => {
@@ -36,11 +39,11 @@ watch(idNumber, (newIdNumber) => {
 onMounted(() => {
   todoList.value = JSON.parse(localStorage.getItem('todoList')) || []
   todoToday.value = todoList.value.filter(task => task.unformattedDate === dateToday);
+  comingupList.value = todoList.value.filter(task => task.unformattedDate !== dateToday);
   doingList.value = JSON.parse(localStorage.getItem('doingList')) || []
   doneList.value = JSON.parse(localStorage.getItem('doneList')) || []
   doneToday.value = doneList.value.filter(task => task.unformattedDate === dateToday);
   idNumber.value = Number(JSON.parse(localStorage.getItem('idNumber'))) || 0
-  console.log(todoToday.value)
 });
 
 function onUpdate() {
@@ -71,6 +74,50 @@ function getTodaysDate() {
   return (todaysYear + '-' + todaysMonth + '-' + todaysDay);
 }
 
+function getNextSevenDays(date) {
+  const splittedDate = date.split('-');
+  const day = parseInt(splittedDate[2], 10);
+  const monthIndex = parseInt(splittedDate[1], 10) - 1;
+  const year = splittedDate[0];
+  const arrayOfDates = [];
+  const leapYear = isLeapYear(year);
+  const daysInMonth = [31, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (leapYear) {
+    daysInMonth.splice(1, 0, 29);
+  } else {
+    daysInMonth.splice(1, 0, 28);
+  }
+
+  let nextDay = day;
+  let fullDate = "";
+
+  if ((day - 7) <= daysInMonth[monthIndex]) {
+    // add date to array seven times, incrementing nextDay each time
+    const month = monthIndex + 1;
+    for (let i = 0; i < 7; i++) {
+      nextDay++;
+      fullDate = year.toString() + "-" + month.toString().padStart(2, '0') + "-" + nextDay.toString().padStart(2, '0');
+      arrayOfDates.push(fullDate);
+    }
+    console.log(arrayOfDates)
+  } else {
+    if (nextDay++ <= daysInMonth[monthIndex]) {
+      console.log("special")
+    }
+  } 
+  return arrayOfDates;
+}
+
+function isLeapYear(year) {
+  if ((year % 4 === 0) && (year % 100 !== 0)) {
+    return true;
+  } else if ((year % 4 === 0) && (year % 100 === 0) && (year % 400 === 0)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 const { open, close } = useModal({
     component: AddTaskModal,
     attrs: {
@@ -98,9 +145,7 @@ const { open, close } = useModal({
   })
 
   function inCount() {
-    console.log(todoCount.value);
     todoCount.value++
-    console.log(todoCount.value);
   }
 
   function formatDate(date) {
@@ -188,6 +233,14 @@ const { open, close } = useModal({
     </div>
     <div class="comingup">
       <h2>Coming up...</h2>
+      <ul>
+        <li
+          v-for="item in comingupList"
+          :key="item.id"
+        >
+          {{ item.taskDate }}: {{  item.taskName }}
+        </li>
+      </ul>
     </div>
   </div>
   <ModalsContainer />
@@ -202,6 +255,10 @@ const { open, close } = useModal({
     border-radius: 20px;
     padding: 15px;
     margin-bottom: 120px;
+  }
+
+  .comingup > ul > li {
+    text-align: left;
   }
 
   .container {
