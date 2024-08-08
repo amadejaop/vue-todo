@@ -17,9 +17,26 @@ const dateToday = getTodaysDate();
 const comingupList = ref([]);
 const nextSevenDays = getNextSevenDays(dateToday);
 
+watch(todoToday, (newTodoToday) => {
+  let index = 0;
+  for (const task of todoList.value) {
+    if (task.unformattedDate === dateToday) {
+      if (todoToday.value.indexOf(task) === -1) {
+        todoList.value.splice(index, 1);
+      }
+    }
+    index++;
+  }
+
+  for (const task of todoToday.value) {
+    if (todoList.value.indexOf(task) === -1) {
+      todoList.value.push(task);
+    }
+  }
+})
+
 watch(todoList, (newTodo) => {
-  localStorage.setItem('todoList', JSON.stringify(newTodo))
-  todoToday.value = todoList.value.filter(task => task.unformattedDate === dateToday);
+  localStorage.setItem('todoList', JSON.stringify(newTodo));
   createComingupList();
 }, { deep: true });
 
@@ -27,9 +44,8 @@ watch(doingList, (newDoing) => {
   localStorage.setItem('doingList', JSON.stringify(newDoing))
 }, { deep: true });
 
-watch(doneList, (newDone) => {
+watch(doneToday, (newDone) => {
   localStorage.setItem('doneList', JSON.stringify(newDone))
-  doneToday.value = doneList.value.filter(task => task.unformattedDate === dateToday);
 }, { deep: true });
 
 watch(idNumber, (newIdNumber) => {
@@ -159,7 +175,13 @@ const { open, close } = useModal({
           taskPriority: params[3],
           taskStatus: "todo"
         }
+
+        if (newTask.unformattedDate === dateToday) {
+          todoToday.value.push(newTask)
+        }
+
         todoList.value.push(newTask);
+        
         close()
       },
       onClose() {
@@ -282,10 +304,12 @@ const { open, close } = useModal({
   }
 
   .comingup > ul > li {
+    color: var(--textcolor);
     text-align: left;
   }
 
   .comingup > ul > li::marker {
+    color: var(--textcolor);
     content: "◈ ";
   }
 

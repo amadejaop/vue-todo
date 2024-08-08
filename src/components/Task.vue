@@ -2,7 +2,7 @@
   import Tag from "./Tag.vue"
   import EditTaskModal from './EditTaskModal.vue';
   import { ModalsContainer, useModal } from 'vue-final-modal';
-  import { ref, watch, onMounted, nextTick } from 'vue'
+  import { ref, watch, onMounted } from 'vue'
 
   defineProps({
     id: String,
@@ -18,7 +18,7 @@
 
   watch(editedTodo, (edited) => {
   localStorage.setItem('todoList', JSON.stringify(edited))
-}, { deep: true })
+}, { deep: true })  
 
 onMounted(() => {
   editedTodo.value = JSON.parse(localStorage.getItem('todoList'))

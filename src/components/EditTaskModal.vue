@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
 import { VueFinalModal } from 'vue-final-modal'
 import 'vue-final-modal/style.css'
 import BlueButton from './BlueButton.vue';
