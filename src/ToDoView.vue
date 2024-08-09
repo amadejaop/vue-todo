@@ -5,6 +5,7 @@ import Task from "./components/Task.vue"
 import { ModalsContainer, useModal } from 'vue-final-modal';
 import AddTaskModal from './components/AddTaskModal.vue'
 import BlueButton from './components/BlueButton.vue';
+import WhiteButton from './components/WhiteButton.vue';
 
 let idNumber = ref(0);
 
@@ -233,7 +234,9 @@ const { open, close } = useModal({
       </VueDraggable>
     </div>
     <div class="container">
-      <h2 class="listheader">Doing</h2>
+      <div class="listheader">
+        <h2 class="singleheader">Doing</h2>
+      </div>
       <VueDraggable
         class="container2"        
         v-model="doingList"
@@ -256,7 +259,10 @@ const { open, close } = useModal({
       </VueDraggable>
     </div>
     <div class="container">
-      <h2 class="listheader">Done</h2>
+      <div class="listheader">
+        <h2>Done</h2>
+        <WhiteButton>View All</WhiteButton>
+      </div>
       <VueDraggable
         class="container2"        
         v-model="doneToday"
@@ -343,6 +349,10 @@ const { open, close } = useModal({
     display: flex;
     justify-content: space-between;
     padding-bottom: 0.7rem;
+  }
+
+  .listheader > .singleheader {
+    margin-bottom: 9px;
   }
 
   .listheader > h2,
