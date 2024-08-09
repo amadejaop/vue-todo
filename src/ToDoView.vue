@@ -6,6 +6,7 @@ import { ModalsContainer, useModal } from 'vue-final-modal';
 import AddTaskModal from './components/AddTaskModal.vue'
 import BlueButton from './components/BlueButton.vue';
 import WhiteButton from './components/WhiteButton.vue';
+import ViewAllTasksModal from './components/ViewAllTasksModal.vue';
 
 let idNumber = ref(0);
 
@@ -17,6 +18,11 @@ const doneToday = ref([]);
 const dateToday = getTodaysDate();
 const comingupList = ref([]);
 const nextSevenDays = getNextSevenDays(dateToday);
+
+const showAllTasks = ref(false);
+function closeAllTasks() {
+  showAllTasks.value = false;
+}
 
 watch(todoToday, (newTodoToday) => {
   let index = 0;
@@ -261,7 +267,11 @@ const { open, close } = useModal({
     <div class="container">
       <div class="listheader">
         <h2>Done</h2>
-        <WhiteButton>View All</WhiteButton>
+        <WhiteButton @click="showAllTasks = true">View All</WhiteButton>
+        <ViewAllTasksModal
+          v-model="showAllTasks"
+          @confirm="() => closeAllTasks()"
+        ></ViewAllTasksModal>
       </div>
       <VueDraggable
         class="container2"        
@@ -316,7 +326,8 @@ const { open, close } = useModal({
 
   .comingup > ul > li::marker {
     color: var(--textcolor);
-    content: "◈ ";
+    content: "♢ ";
+    font-size: 14px;
   }
 
   .container {
