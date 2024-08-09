@@ -6,9 +6,11 @@ const emit = defineEmits(['confirm'])
 
 const doneAllList = ref([])
 
-watch(doneList, (newDone) => {
+function updateList() {
   doneAllList.value = JSON.parse(localStorage.getItem('doneList'))
-}, { deep: true });
+}
+
+defineExpose({ updateList });
 
 onMounted(() => {
   doneAllList.value = JSON.parse(localStorage.getItem('doneList')) || []

@@ -9,6 +9,7 @@ import WhiteButton from './components/WhiteButton.vue';
 import ViewAllTasksModal from './components/ViewAllTasksModal.vue';
 
 let idNumber = ref(0);
+const allTasks = ref(null)
 
 const todoList = ref([]);
 const todoToday = ref([]);
@@ -52,7 +53,8 @@ watch(doingList, (newDoing) => {
 }, { deep: true });
 
 watch(doneToday, (newDone) => {
-  localStorage.setItem('doneList', JSON.stringify(newDone))
+  localStorage.setItem('doneList', JSON.stringify(newDone));
+  allTasks.value.updateList();
 }, { deep: true });
 
 watch(idNumber, (newIdNumber) => {
@@ -269,6 +271,7 @@ const { open, close } = useModal({
         <h2>Done</h2>
         <WhiteButton @click="showAllTasks = true">View All</WhiteButton>
         <ViewAllTasksModal
+          ref="allTasks"
           v-model="showAllTasks"
           @confirm="() => closeAllTasks()"
         ></ViewAllTasksModal>
