@@ -24,7 +24,7 @@ onMounted(() => {
       overlay-transition="vfm-fade"
       content-transition="vfm-fade"
     >
-      <h1>Content</h1>
+      <h3>List of all completed tasks</h3>
       <ul>
         <li
           v-for="item in doneAllList"
@@ -33,7 +33,7 @@ onMounted(() => {
         </li>
       </ul>
       <button @click="emit('confirm')">
-        Confirm
+        Close
       </button>
     </VueFinalModal>
 </template>

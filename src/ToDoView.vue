@@ -52,9 +52,28 @@ watch(doingList, (newDoing) => {
   localStorage.setItem('doingList', JSON.stringify(newDoing))
 }, { deep: true });
 
-watch(doneToday, (newDone) => {
-  localStorage.setItem('doneList', JSON.stringify(newDone));
+watch(doneToday, (newDoneToday) => {
+  console.log(doneToday.value)
+  let index = 0;
+  for (const task of doneList.value) {
+    if (task.unformattedDate === dateToday) {
+      if (doneToday.value.indexOf(task) === -1) {
+        doneList.value.splice(index, 1);
+      }
+    }
+    index++;
+  }
+
+  for (const task of doneToday.value) {
+    if (doneList.value.indexOf(task) === -1) {
+      doneList.value.push(task);
+    }
+  }
   allTasks.value.updateList();
+}, { deep: true });
+
+watch(doneList, (newDone) => {
+  localStorage.setItem('doneList', JSON.stringify(newDone))
 }, { deep: true });
 
 watch(idNumber, (newIdNumber) => {
