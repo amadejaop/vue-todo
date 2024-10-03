@@ -9,9 +9,7 @@
     <RouterView />
   </main>
   <footer>
-    <p>Designed and coded by <a href="https://amadejaop.github.io/">Amadeja Obšteter Privošnik</a>.</p>
-    <p>Check out the souce code on <a href="https://github.com/amadejaop/vue-todo">GitHub</a>.</p>
-    <p>Take a look at <a href="https://amadejaop.github.io/#projects">my complete portfolio</a>.</p>
+    <p>Designed and coded by <a href="https://amadejaop.github.io/">Amadeja Obšteter Privošnik</a>. | <a href="https://github.com/amadejaop/vue-todo">Source code</a> | <a href="https://amadejaop.github.io/#projects">Portfolio</a></p>
   </footer>
 </template>
 
@@ -36,7 +34,7 @@
   }
 
   footer > p > a:hover {
-    text-decoration: wavy underline;
+    text-decoration: underline;
   }
 
   main {

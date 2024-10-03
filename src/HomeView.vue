@@ -3,6 +3,10 @@
     <h1>Quendle</h1>
     <p class="subtext">Quendle is an easy to use drag and drop to do app.</p>
     <h2>Updates</h2>
+    <h3>October 3rd, 2024</h3>
+    <ul>
+      <li>to do list displays tasks due for today and any tasks left over from previous days</li>
+    </ul>
     <h3>August 14th, 2024</h3>
     <ul>
       <li>the done list now properly displays only completed tasks for today</li>

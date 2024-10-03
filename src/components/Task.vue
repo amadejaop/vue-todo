@@ -7,6 +7,7 @@
   defineProps({
     id: String,
     taskName: String,
+    taskMs: Number,
     taskDate: String,
     unformattedDate: String,
     taskTag: "work" | "personal" | null,
@@ -32,12 +33,11 @@ onMounted(() => {
         const index = editedTodo.value.findIndex((task) => task.id == editId)
 
         editedTodo.value[index].taskName = params[0];
+        editedTodo.value[index].taskMs = new Date(params[1]).getTime();
         editedTodo.value[index].taskDate = formatDate(params[1]);
         editedTodo.value[index].unformattedDate = params[1];
         editedTodo.value[index].taskTag = params[2];
         editedTodo.value[index].taskPriority = params[3];
-        console.log(editedTodo.value[index])
-        console.log(editedTodo.value)
         location.reload();
         close();
       },

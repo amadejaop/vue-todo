@@ -17,6 +17,7 @@ const doingList = ref([]);
 const doneList = ref([]);
 const doneToday = ref([]);
 const dateToday = getTodaysDate();
+const todayMs = Date.now();
 const comingupList = ref([]);
 const nextSevenDays = getNextSevenDays(dateToday);
 
@@ -26,6 +27,7 @@ function closeAllTasks() {
 }
 
 watch(todoToday, (newTodoToday) => {
+  // if we delete a task from the visible list (todoToday) the task has to be delted from the full list of tasks (todoList)
   let index = 0;
   for (const task of todoList.value) {
     if (task.unformattedDate === dateToday) {
@@ -36,6 +38,7 @@ watch(todoToday, (newTodoToday) => {
     index++;
   }
 
+  // if we add a task to be done today, the task has to be added to the full list of tasks
   for (const task of todoToday.value) {
     if (todoList.value.indexOf(task) === -1) {
       todoList.value.push(task);
@@ -53,7 +56,6 @@ watch(doingList, (newDoing) => {
 }, { deep: true });
 
 watch(doneToday, (newDoneToday) => {
-  console.log(doneToday.value)
   let index = 0;
   for (const task of doneList.value) {
     if (task.unformattedDate === dateToday) {
@@ -82,7 +84,8 @@ watch(idNumber, (newIdNumber) => {
 
 onMounted(() => {
   todoList.value = JSON.parse(localStorage.getItem('todoList')) || []
-  todoToday.value = todoList.value.filter(task => task.unformattedDate === dateToday);
+  createTodoTodayList();
+  //todoToday.value = todoList.value.filter(task => ((task.unformattedDate === dateToday) || (todayMs - task.taskMs >= 0)));
   createComingupList();
   doingList.value = JSON.parse(localStorage.getItem('doingList')) || []
   doneList.value = JSON.parse(localStorage.getItem('doneList')) || []
@@ -108,6 +111,14 @@ function changeStatusDoing(item) {
 }
 function changeStatusDone(item) {
     item.taskStatus = "done";
+}
+
+function createTodoTodayList() {
+  for (const task of todoList.value) {
+   if ((task.unformattedDate === dateToday) || ((todayMs - task.taskMs) >= 0)) {
+     todoToday.value.push(task);
+    }
+  }
 }
 
 function createComingupList() {
@@ -197,6 +208,7 @@ const { open, close } = useModal({
         const newTask = {
           id: newId,
           taskName: params[0],
+          taskMs: new Date(params[1]).getTime(),
           taskDate: newDate,
           unformattedDate: params[1],
           taskTag: params[2],
